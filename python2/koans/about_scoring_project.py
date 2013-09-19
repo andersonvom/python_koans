@@ -36,6 +36,8 @@ from runner.koan import *
 def score(dice):
     if not dice:
         return 0
+    if dice[0] == 1:
+        return 100
     if dice[0] == 5:
         return 50
 
