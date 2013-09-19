@@ -35,12 +35,27 @@ from runner.koan import *
 
 def score(dice):
     score = 0
+    rolls = {}
 
     for d in dice:
+        if d not in rolls:
+            rolls[d] = 0
+        rolls[d] += 1
+
+    for d in rolls:
+        times = rolls[d]
+
+        if times >= 3:
+            times -= 3
+            if d == 1:
+                score += 1000
+            else:
+                score += 100 * d
+
         if d == 1:
-            score += 100
+            score += 100 * times
         if d == 5:
-            score += 50
+            score += 50 * times
 
     return score
 
