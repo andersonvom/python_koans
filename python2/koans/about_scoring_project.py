@@ -34,12 +34,15 @@ from runner.koan import *
 # Your goal is to write the score method.
 
 def score(dice):
-    if not dice:
-        return 0
-    if dice[0] == 1:
-        return 100
-    if dice[0] == 5:
-        return 50
+    score = 0
+
+    for d in dice:
+        if d == 1:
+            score += 100
+        if d == 5:
+            score += 50
+
+    return score
 
 
 class AboutScoringProject(Koan):
