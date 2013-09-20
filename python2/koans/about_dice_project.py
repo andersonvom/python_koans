@@ -15,9 +15,10 @@ class DiceSet(object):
         return self._values
 
     def roll(self, n):
-        # Needs implementing!
-        # Tip: random.randint(min, max) can be used to generate random numbers
-        pass
+        self._values = []
+        for i in range(n):
+            roll_value = random.randint(1, 6)
+            self.values.append(roll_value)
 
 
 class AboutDiceProject(Koan):
@@ -52,7 +53,7 @@ class AboutDiceProject(Koan):
         dice.roll(5)
         second_time = dice.values
 
-        self.assertNotEqual(first_time, second_time, \
+        self.assertNotEqual(first_time.__repr__, second_time.__repr__, \
             "Two rolls should not be equal")
 
         # THINK ABOUT IT:
