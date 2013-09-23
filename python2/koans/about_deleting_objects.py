@@ -79,7 +79,7 @@ class AboutDeletingObjects(Koan):
     def test_del_works_with_properties(self):
         cowboy = self.ClintEastwood()
         cowboy.name = 'Senor Ninguno'
-        self.assertEqual('Senor Ninguno', cowboy.name)
+        self.assertEqual(__, cowboy.name)
 
         del cowboy.name
         self.assertEqual(__, cowboy.name)
@@ -105,7 +105,7 @@ class AboutDeletingObjects(Koan):
     def test_another_way_to_make_a_deletable_property(self):
         citizen = self.Prisoner()
         citizen.name = "Patrick"
-        self.assertEqual('Patrick', citizen.name)
+        self.assertEqual(__, citizen.name)
 
         del citizen.name
         self.assertEqual(__, citizen.name)
@@ -122,6 +122,6 @@ class AboutDeletingObjects(Koan):
 
     def tests_del_can_be_overriden(self):
         sale = self.MoreOrganisedClosingSale()
-        self.assertEqual(5, sale.jellies())
+        self.assertEqual(__, sale.jellies())
         del sale.jellies
         self.assertEqual(__, sale.last_deletion)
