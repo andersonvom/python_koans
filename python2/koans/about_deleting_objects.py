@@ -10,7 +10,7 @@ class AboutDeletingObjects(Koan):
         del lottery_nums[1]
         del lottery_nums[2:4]
 
-        self.assertEqual(__, lottery_nums)
+        self.assertEqual([4, 15, 42], lottery_nums)
 
     def test_del_can_remove_entire_lists(self):
         lottery_nums = [4, 8, 15, 16, 23, 42]
@@ -19,7 +19,8 @@ class AboutDeletingObjects(Koan):
             win = lottery_nums
         except Exception as e:
             pass
-        self.assertMatch(__, e[0])
+        expected = "local variable 'lottery_nums' referenced before assignment"
+        self.assertMatch(expected, e[0])
 
     # --------------------------------------------------------------------
 
@@ -52,8 +53,10 @@ class AboutDeletingObjects(Koan):
         except AttributeError as e:
             err_msg2 = e.args[0]
 
-        self.assertMatch(__, err_msg1)
-        self.assertMatch(__, err_msg2)
+        expected1 = "'ClosingSale' object has no attribute 'toilet_brushes'"
+        expected2 = "'ClosingSale' object has no attribute 'hamsters'"
+        self.assertMatch(expected1, err_msg1)
+        self.assertMatch(expected2, err_msg2)
 
     # --------------------------------------------------------------------
 
@@ -79,10 +82,10 @@ class AboutDeletingObjects(Koan):
     def test_del_works_with_properties(self):
         cowboy = self.ClintEastwood()
         cowboy.name = 'Senor Ninguno'
-        self.assertEqual(__, cowboy.name)
+        self.assertEqual('Senor Ninguno', cowboy.name)
 
         del cowboy.name
-        self.assertEqual(__, cowboy.name)
+        self.assertEqual('The man with no name', cowboy.name)
 
     # --------------------------------------------------------------------
 
@@ -105,10 +108,10 @@ class AboutDeletingObjects(Koan):
     def test_another_way_to_make_a_deletable_property(self):
         citizen = self.Prisoner()
         citizen.name = "Patrick"
-        self.assertEqual(__, citizen.name)
+        self.assertEqual('Patrick', citizen.name)
 
         del citizen.name
-        self.assertEqual(__, citizen.name)
+        self.assertEqual('Number Six', citizen.name)
 
     # --------------------------------------------------------------------
 
@@ -122,6 +125,6 @@ class AboutDeletingObjects(Koan):
 
     def tests_del_can_be_overriden(self):
         sale = self.MoreOrganisedClosingSale()
-        self.assertEqual(__, sale.jellies())
+        self.assertEqual(5, sale.jellies())
         del sale.jellies
-        self.assertEqual(__, sale.last_deletion)
+        self.assertEqual('jellies', sale.last_deletion)
